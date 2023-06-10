@@ -34,9 +34,13 @@ async def scrape_dextools():
 
     new_pair = []
     array = []
+    links = []
     i = 1
     while i <= 10:
         list = app.find_element(By.XPATH, f"div/span/li[{i}]/a")
+        href = list.get_property('href')
+        links.append(href)
+
         text = list.get_attribute('innerHTML')
 
         start = text.find('<!---->') + 7
@@ -56,7 +60,7 @@ async def scrape_dextools():
     if len(new_pair) != 0: 
         with open("data.json", "w") as outfile:
             json.dump(pairs, outfile)
-        await func(array, new_pair)
+        await func(array, new_pair, links)
     # scheduler.enter(5, 1, scrape_dextools, (scheduler,))
 
 async def run_check_every_minute():
@@ -72,19 +76,16 @@ async def on_ready():
     print(f'Logged in as {client.user.name}')
     await run_check_every_minute()
 
-async def func(array, new_pair):
+async def func(array, new_pair, links):
     channel = client.get_channel(CHANNEL_ID)
-    content = ""
-    for pair in new_pair:
-        content += f"{pair}"
-    embed = discord.Embed(title="New pair Alert:", description=content, color=discord.Color.blue())
+    embed = discord.Embed(title="New pair Alert:", description="", color=discord.Color.blue())
     
     i = 1
     while i <= 10:
         if array[i-1] in new_pair:
-            embed.add_field(name="", value=str(f"```fix\n#{i}.{array[i-1]}```"), inline=False)
+            embed.add_field(name="", value=f"```fix\n#{i}.{array[i-1]}```[{links[i-1][-42:]}]({links[i-1]})", inline=False)
         else:
-            embed.add_field(name="", value=str(f"```orange\n#{i}.{array[i-1]}```"), inline=False)
+            embed.add_field(name="", value=f"```orange\n#{i}.{array[i-1]}```[{links[i-1][-42:]}]({links[i-1]})", inline=False)
         i = i + 1
     await channel.send(embed=embed)
 
