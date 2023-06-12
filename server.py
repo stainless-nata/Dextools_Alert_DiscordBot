@@ -39,7 +39,7 @@ async def scrape_dextools():
     while i <= 10:
         list = app.find_element(By.XPATH, f"div/span/li[{i}]/a")
         href = list.get_property('href')
-        links.append(href)
+        links.append(href[-42:])
 
         text = list.get_attribute('innerHTML')
 
@@ -83,9 +83,9 @@ async def func(array, new_pair, links):
     i = 1
     while i <= 10:
         if array[i-1] in new_pair:
-            embed.add_field(name="", value=f"```fix\n#{i}.{array[i-1]}```[{links[i-1][-42:]}]({links[i-1]})", inline=False)
+            embed.add_field(name="", value=f"```fix\n#{i}.{array[i-1]}```[{links[i-1]}](https://dexscreener.com/ethereum/{links[i-1]})", inline=False)
         else:
-            embed.add_field(name="", value=f"```orange\n#{i}.{array[i-1]}```[{links[i-1][-42:]}]({links[i-1]})", inline=False)
+            embed.add_field(name="", value=f"```orange\n#{i}.{array[i-1]}```[{links[i-1]}](https://dexscreener.com/ethereum/{links[i-1]})", inline=False)
         i = i + 1
     await channel.send(embed=embed)
 
