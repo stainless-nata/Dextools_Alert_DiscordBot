@@ -1,4 +1,4 @@
-from discord.ext import commands
+from discord import app_commands
 from selenium import webdriver
 from selenium.webdriver.common.by import By 
 from dotenv import load_dotenv
@@ -16,9 +16,8 @@ CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
 DISCORD_BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 
 intents = discord.Intents.default()
-intents.guilds = True
-intents.members = True
-client = commands.Bot(command_prefix='!', intents=intents)
+client = discord.Client(intents=intents)
+tree = app_commands.CommandTree(client)
 
 read_file = open('data.json')
 
@@ -73,8 +72,16 @@ async def run_check_every_minute():
 
 @client.event
 async def on_ready():
+    await tree.sync(guild=discord.Object(id=1044776964470362263))
     print(f'Logged in as {client.user.name}')
     await run_check_every_minute()
+
+@tree.command(name="reset", description="Reset Database")
+async def reset(ctx):
+    await ctx.response.send_message("Success!")
+    pairs = {}
+    with open("data.json", "w") as outfile:
+        json.dump(pairs, outfile)
 
 async def func(array, new_pair, links):
     channel = client.get_channel(CHANNEL_ID)
