@@ -83,7 +83,7 @@ async def func(array, new_pair, links):
     i = 1
     while i <= 10:
         if array[i-1] in new_pair:
-            embed.add_field(name="", value=f"**```diff\n+#{i}.{array[i-1]}```**[{links[i-1]}](https://dexscreener.com/ethereum/{links[i-1]})", inline=False)
+            embed.add_field(name="", value=f"**```diff\n#{i}.{array[i-1]}```**[{links[i-1]}](https://dexscreener.com/ethereum/{links[i-1]})", inline=False)
         else:
             embed.add_field(name="", value=f"```orange\n#{i}.{array[i-1]}```[{links[i-1]}](https://dexscreener.com/ethereum/{links[i-1]})", inline=False)
         i = i + 1

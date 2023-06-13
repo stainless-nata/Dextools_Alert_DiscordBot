@@ -1,0 +1,20 @@
+{
+  "name": "dextools_alert",
+  "version": "1.0.0",
+  "description": "Dextool New Hot Pair Alert System",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node puppeteer_scraper.js | node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "crypto": "^1.0.1",
+    "path": "^0.12.7",
+    "python-shell": "^5.0.0",
+    "request": "^2.88.2",
+    "sqlite3": "^5.1.6"
+  }
+}
