@@ -7,7 +7,11 @@ https://www.simplilearn.com/tutorials/python-tutorial/python-installation-on-win
 * python get-pip.py
 
 - `npm install` to install node packages
-- `pip install discord selenium dotenv numpy json`
+-   `pip install discord`
+    `pip install selenium`
+    `pip install dotenv`
+    `pip install numpy`
+    `pip install json`
 
 # Run
 - Edit '.env' file and enter your discord bot token and channel ID
