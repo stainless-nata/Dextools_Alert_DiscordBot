@@ -26,6 +26,10 @@ pairs = json.load(read_file)
 async def scrape_dextools():
     options = webdriver.ChromeOptions()
     # options.add_argument('--headless') # Run the browser in headless mode
+    options.add_argument("--remote-debugging-port=9014")
+    options.add_argument("--user-data-dir=C:\Selenium\Chrome_Test_Profile")
+    # options.add_argument("--user-data-dir=C:\\Users\\Administrator\\AppData\\local\\Google\\Chrome\\User Data")
+    # options.add_argument('--profile-directory=Default')
     browser = webdriver.Chrome(options=options)
 
     browser.get(SCRAPE_URL)
