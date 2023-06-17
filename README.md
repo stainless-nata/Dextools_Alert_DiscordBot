@@ -16,6 +16,9 @@ run `pip install discord`
     `pip install dotenv`
     `pip install numpy`
     `pip install json`
+- Setup environment
+`C:\Program Files\Google\Chrome\Application` Run command prompt here.
+Run `chrome.exe --remote-debugging-port=9014 --user-data-dir=C:\Selenium\Chrome_Test_Profile` in console
 
 # Run
 - Run `npm start`
