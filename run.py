@@ -33,13 +33,15 @@ async def scrape_dextools():
     browser = webdriver.Chrome(options=options)
 
     browser.get(SCRAPE_URL)
+    time.sleep(5)
     app = browser.find_element(By.TAG_NAME, "app-marquee")
+
 
     new_pair = []
     array = []
     links = []
     i = 1
-    while i <= 10:
+    while i <= 15:
         list = app.find_element(By.XPATH, f"div/span/li[{i}]/a")
         href = list.get_property('href')
         links.append(href[-42:])
@@ -49,6 +51,9 @@ async def scrape_dextools():
         start = text.find('<!---->') + 7
         end = text.find('<img')
         pair = text[start:end]
+
+        if('???' in pair):
+            break
 
         if pair in pairs.keys():
             array.append(pair)
