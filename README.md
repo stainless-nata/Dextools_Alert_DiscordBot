@@ -19,6 +19,7 @@ run `pip install discord`
 - Setup environment
 `C:\Program Files\Google\Chrome\Application` Run command prompt here.
 Run `chrome.exe --remote-debugging-port=9014 --user-data-dir=C:\Selenium\Chrome_Test_Profile` in console
+Setup wallet extension on your browser and login with the wallet(subscription wallet) on dextools
 
 # Run
 - Run `npm start`
